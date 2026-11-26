@@ -28,19 +28,6 @@ tailwind.config = {
 }
 </script>
 <style>
-/* ══════════════════════════════════════════════════════════════
-   PHOTOGRAPHS: replace the three lines below with your own images
-   and the whole page picks them up. Until you do, hand-drawn
-   artwork shows in their place.
-
-   Example:  --photo-hero: url('images/bangles.jpg');
-   ══════════════════════════════════════════════════════════════ */
-:root{
-  --photo-hero: none;     /* the bangle and jhumka stall */
-  --photo-story: none;    /* the open trunk with the sari */
-  --photo-band: none;     /* the fabric texture behind the signup */
-}
-
 html{scroll-behavior:smooth}
 body{font-family:'Cormorant Garamond',Georgia,serif;background:#241A14;color:#F2E8D8}
 :focus-visible{outline:1px solid #C9A96B;outline-offset:4px}
@@ -50,17 +37,11 @@ body{font-family:'Cormorant Garamond',Georgia,serif;background:#241A14;color:#F2
 
 /* logo */
 .logo-slot{display:inline-block}
-.logo-slot svg,.logo-slot img{display:block;height:100%;width:auto}
-.logo-slot svg{aspect-ratio:600/330}
+.logo-slot svg{display:block;height:100%;width:auto;aspect-ratio:600/330}
 
-/* photo frames: your image on top, drawn artwork underneath */
+/* drawn artwork frames */
 .photo{position:relative;overflow:hidden;background:#1B120D}
-.photo > .shot{
-  position:absolute;inset:0;z-index:2;
-  background-image:var(--ph,none);
-  background-size:cover;background-position:center;
-}
-.photo > svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.photo > svg{position:absolute;inset:0;width:100%;height:100%}
 .photo > .scrim{position:absolute;inset:0;z-index:3}
 .photo > .content{position:relative;z-index:4}
 
@@ -69,6 +50,31 @@ body{font-family:'Cormorant Garamond',Georgia,serif;background:#241A14;color:#F2
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
 }
 input::placeholder{color:#9C8C74;font-style:italic}
+
+/* intro: floating chhatris */
+#splash{
+  position:fixed;inset:0;z-index:100;overflow:hidden;display:grid;place-items:center;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84'%3E%3Cg fill='none' stroke='%23000' stroke-opacity='.32' stroke-width='1.5'%3E%3Cpath d='M42 14 L70 42 L42 70 L14 42 Z'/%3E%3Cpath d='M42 30 L54 42 L42 54 L30 42 Z'/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(ellipse 60% 55% at 22% 78%, rgba(122,30,50,.6), transparent 70%),
+    radial-gradient(ellipse 55% 50% at 78% 18%, rgba(120,78,40,.5), transparent 70%),
+    #1C120D;
+  transition:opacity .9s ease, visibility .9s;
+}
+#splash.leaving{opacity:0;visibility:hidden}
+.splash-inner{position:relative;z-index:2;transition:transform .9s ease}
+#splash.leaving .splash-inner{transform:scale(1.05)}
+.splash-inner::before{
+  content:'';position:absolute;inset:-20% -35%;z-index:-1;
+  background:radial-gradient(closest-side, rgba(20,12,9,.85), rgba(20,12,9,0));
+}
+.chhatri{position:absolute;top:100%;animation:floatUp linear infinite}
+.chhatri svg{display:block;width:100%;height:auto}
+.sway{transform-origin:50% 10%;animation:sway ease-in-out infinite alternate}
+@keyframes floatUp{to{transform:translateY(calc(-100vh - 260px))}}
+@keyframes sway{from{transform:rotate(-8deg)}to{transform:rotate(8deg)}}
+.rise-in{animation:riseIn 1.2s cubic-bezier(.2,.7,.2,1) both}
+@keyframes riseIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
 /* Sakhi helper */
 #sakhiLog a{color:#C9A96B;text-decoration:underline;text-underline-offset:3px}
@@ -119,6 +125,23 @@ input::placeholder{color:#9C8C74;font-style:italic}
   </symbol>
 </defs></svg>
 
+<!-- ═══════════════ INTRO ═══════════════ -->
+<div id="splash" role="dialog" aria-label="Welcome to Virasat">
+  <div id="sky" class="absolute inset-0" aria-hidden="true"></div>
+  <div class="splash-inner px-6 text-center">
+    <p class="rise-in track-sm text-[11.5px] uppercase text-brass/90" style="animation-delay:.2s">A new chapter for Indian craft</p>
+    <h2 class="rise-in mt-6" style="animation-delay:.5s">
+      <span class="sr-only">Virasat</span>
+      <span class="logo-slot h-40 sm:h-56" aria-hidden="true"></span>
+    </h2>
+    <p class="rise-in mt-6 text-3xl font-light italic sm:text-4xl" style="animation-delay:1s">Nothing is Ordinary Twice.</p>
+    <button id="enterBtn" class="rise-in mt-10 rounded-full border border-brass/70 bg-black/25 px-10 py-3.5 text-xl font-light italic transition hover:bg-brass hover:text-espresso" style="animation-delay:1.5s">
+      Enter Virasat
+    </button>
+    <p class="rise-in mt-4 text-[15px] italic text-muted" style="animation-delay:1.8s">Padhaariye. Aapka swagat hai.</p>
+  </div>
+</div>
+
 <!-- ═══════════════ NAV ═══════════════ -->
 <header class="absolute inset-x-0 top-0 z-30">
   <div class="mx-auto flex w-[92%] max-w-6xl items-center justify-between gap-6 py-5">
@@ -133,7 +156,7 @@ input::placeholder{color:#9C8C74;font-style:italic}
 </header>
 
 <!-- ═══════════════ HERO ═══════════════ -->
-<section id="top" class="photo min-h-[86vh]" style="--ph:var(--photo-hero)">
+<section id="top" class="photo min-h-[86vh]">
   <svg viewBox="0 0 1200 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <rect width="1200" height="760" fill="#1B120D"/>
     <ellipse cx="820" cy="60" rx="520" ry="330" fill="url(#lamp)"/>
@@ -205,7 +228,7 @@ input::placeholder{color:#9C8C74;font-style:italic}
 
 <!-- ═══════════════ OUR STORY ═══════════════ -->
 <section id="story" class="grid scroll-mt-4 lg:grid-cols-2">
-  <div class="photo min-h-[340px] lg:min-h-[560px]" style="--ph:var(--photo-story)">
+  <div class="photo min-h-[340px] lg:min-h-[560px]">
     <svg viewBox="0 0 700 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <rect width="700" height="620" fill="#191009"/>
       <ellipse cx="300" cy="30" rx="460" ry="300" fill="url(#lamp)" opacity=".7"/>
@@ -365,7 +388,7 @@ input::placeholder{color:#9C8C74;font-style:italic}
 </section>
 
 <!-- ═══════════════ SIGNUP + CONTACT ═══════════════ -->
-<section id="signup" class="photo scroll-mt-4" style="--ph:var(--photo-band)">
+<section id="signup" class="photo scroll-mt-4">
   <svg viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <rect width="1200" height="420" fill="#3D1A22"/>
     <rect width="1200" height="420" fill="url(#silk)" opacity=".55"/>
@@ -468,10 +491,7 @@ input::placeholder{color:#9C8C74;font-style:italic}
 </div>
 
 <script>
-/* ── LOGO ──────────────────────────────────────────────
-   Upload your logo from the PPT as images/virasat-logo.png
-   and it replaces the drawn version everywhere. */
-const LOGO_FILE = 'images/virasat-logo.png';
+/* ── LOGO ─────────────────────────────────────────────── */
 const LOGO_SVG = `
 <svg viewBox="0 0 600 330" aria-hidden="true" style="color:#EFDDB2">
   <use href="#vFlower" x="58" y="0" width="184" height="184"/>
@@ -482,11 +502,79 @@ const LOGO_SVG = `
   </g>
   <text x="192" y="322" font-family="'Josefin Sans',sans-serif" font-weight="100" font-size="86" letter-spacing="12" fill="currentColor">IRASAT</text>
 </svg>`;
-const slots = document.querySelectorAll('.logo-slot');
-slots.forEach(s => s.innerHTML = LOGO_SVG);
-const probe = new Image();
-probe.onload = () => slots.forEach(s => s.innerHTML = `<img src="${LOGO_FILE}" alt="">`);
-probe.src = LOGO_FILE;
+document.querySelectorAll('.logo-slot').forEach(s => s.innerHTML = LOGO_SVG);
+
+/* ── INTRO: floating chhatris ─────────────────────────── */
+(function(){
+  const splash = document.getElementById('splash');
+  if (!splash) return;
+  const sky = document.getElementById('sky');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.style.overflow = 'hidden';
+
+  const PAL = [
+    ['#6E2634','#D9A441','#3A1A20'],
+    ['#C8406E','#E5A33B','#5C2230'],
+    ['#4A2A1E','#D9849A','#8A6A3A'],
+    ['#8C3244','#EFDDB2','#5C2230'],
+    ['#E5A33B','#5C2230','#C8406E'],
+    ['#5C2230','#C9A96B','#D9849A'],
+  ];
+
+  function chhatri([a, b, band], id){
+    const xs = [10,40,70,100,130,160,190];
+    const canopy = 'M10 92 Q12 24 100 18 Q188 24 190 92 Q175 108 160 92 Q145 108 130 92 Q115 108 100 92 Q85 108 70 92 Q55 108 40 92 Q25 108 10 92 Z';
+    let panels = '', dots = '', tassels = '';
+    for (let i = 0; i < 6; i++){
+      panels += `<path d="M100 18 L${xs[i]} 112 L${xs[i+1]} 112 Z" fill="${i % 2 ? b : a}"/>`;
+      const cx = 25 + i * 30;
+      dots += `<circle cx="${cx}" cy="84" r="4.2" fill="#F5E3B8"/><circle cx="${cx}" cy="84" r="7" fill="none" stroke="#F5E3B8" stroke-width="1.2" opacity=".7"/>`;
+      tassels += `<path d="M${cx} 100 V114" stroke="#C9A96B" stroke-width="1.6"/><circle cx="${cx}" cy="117" r="3.6" fill="${i % 2 ? a : b}" stroke="#C9A96B" stroke-width="1"/>`;
+    }
+    return `<svg viewBox="0 0 200 200" aria-hidden="true">
+      <defs><clipPath id="cc${id}"><path d="${canopy}"/></clipPath></defs>
+      <path d="M100 96 V170 Q100 188 86 188 Q74 188 74 176" fill="none" stroke="#8A7448" stroke-width="5" stroke-linecap="round"/>
+      ${tassels}
+      <g clip-path="url(#cc${id})">
+        ${panels}
+        <path d="M100 18 L40 112 M100 18 L70 112 M100 18 L100 112 M100 18 L130 112 M100 18 L160 112" stroke="#C9A96B" stroke-width="1.2" opacity=".6"/>
+        <rect x="0" y="72" width="200" height="40" fill="${band}" opacity=".92"/>
+        ${dots}
+      </g>
+      <path d="${canopy}" fill="none" stroke="#C9A96B" stroke-width="2"/>
+      <circle cx="100" cy="13" r="4.5" fill="#C9A96B"/>
+      <path d="M100 4 V9" stroke="#C9A96B" stroke-width="2" stroke-linecap="round"/>
+    </svg>`;
+  }
+
+  const count = innerWidth < 640 ? 10 : 18;
+  const items = Array.from({length: count}, (_, i) => {
+    const size = 60 + Math.random() * 110;
+    const dur = 20 - size / 18 + Math.random() * 3;
+    return { size, dur, x: Math.random() * 96 - 3, delay: -Math.random() * dur, sway: 2.6 + Math.random() * 2.4, pal: PAL[i % PAL.length] };
+  }).sort((p, q) => p.size - q.size);
+
+  sky.innerHTML = items.map((u, i) => {
+    const far = u.size < 95;
+    const place = still
+      ? `left:${u.x}%;top:${8 + Math.random() * 70}%;`
+      : `left:${u.x}%;animation-duration:${u.dur}s;animation-delay:${u.delay}s;`;
+    return `<div class="chhatri" style="${place}width:${u.size}px;opacity:${far ? .55 : .95};${far ? 'filter:blur(1.2px);' : ''}">
+      <div class="sway" style="animation-duration:${u.sway}s;animation-delay:${-Math.random() * 3}s">${chhatri(u.pal, i)}</div>
+    </div>`;
+  }).join('');
+
+  const btn = document.getElementById('enterBtn');
+  function enter(){
+    if (splash.classList.contains('leaving')) return;
+    splash.classList.add('leaving');
+    document.documentElement.style.overflow = '';
+    setTimeout(() => splash.remove(), 950);
+  }
+  btn.addEventListener('click', enter);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.getElementById('splash')) enter(); });
+  btn.focus({preventScroll: true});
+})();
 
 /* ── HOW IT WORKS ─────────────────────────────────────── */
 const STEPS = [
@@ -508,7 +596,7 @@ const input = document.getElementById('email');
 const msg = document.getElementById('formMsg');
 
 form.addEventListener('submit', e => {
-  e.preventDefault();                                  // ← delete this line when you connect Formspree
+  e.preventDefault();
   const v = input.value.trim();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
     msg.textContent = 'That address looks incomplete. Do check it and try again.';
@@ -632,5 +720,4 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(fals
 chatForm.addEventListener('submit', e => { e.preventDefault(); ask(chatInput.value); chatInput.value = ''; });
 </script>
 </body>
-</html>
 </html>
