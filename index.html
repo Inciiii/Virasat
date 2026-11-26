@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Virasat — Nothing is Ordinary Twice</title>
+<title>Virasat · Nothing is Ordinary Twice</title>
 <meta name="description" content="Virasat transforms treasured garments into contemporary pieces, with traditional artisans at the heart of every creation.">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Josefin+Sans:wght@100;200;300&display=swap" rel="stylesheet">
 <script>
 tailwind.config = {
   theme: {
@@ -17,15 +17,19 @@ tailwind.config = {
         espresso:'#241A14', umber:'#3A2A1E', mocha:'#4A3729',
         ivory:'#F2E8D8', ivory2:'#D9CBB6', muted:'#B5A288',
         brass:'#C9A96B', wine:'#5C2230',
+        sdg12:'#BF8B2E', sdg8:'#A21942',
       },
-      fontFamily: { serif:['"Cormorant Garamond"','Georgia','serif'] },
+      fontFamily: {
+        serif:['"Cormorant Garamond"','Georgia','serif'],
+        sans:['"Josefin Sans"','sans-serif'],
+      },
     }
   }
 }
 </script>
 <style>
 /* ══════════════════════════════════════════════════════════════
-   PHOTOGRAPHS — replace the three lines below with your own images
+   PHOTOGRAPHS: replace the three lines below with your own images
    and the whole page picks them up. Until you do, hand-drawn
    artwork shows in their place.
 
@@ -44,6 +48,11 @@ body{font-family:'Cormorant Garamond',Georgia,serif;background:#241A14;color:#F2
 .track{letter-spacing:.34em}
 .track-sm{letter-spacing:.2em}
 
+/* logo */
+.logo-slot{display:inline-block}
+.logo-slot svg,.logo-slot img{display:block;height:100%;width:auto}
+.logo-slot svg{aspect-ratio:600/330}
+
 /* photo frames: your image on top, drawn artwork underneath */
 .photo{position:relative;overflow:hidden;background:#1B120D}
 .photo > .shot{
@@ -60,13 +69,22 @@ body{font-family:'Cormorant Garamond',Georgia,serif;background:#241A14;color:#F2
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
 }
 input::placeholder{color:#9C8C74;font-style:italic}
+
+/* Sakhi helper */
+#sakhiLog a{color:#C9A96B;text-decoration:underline;text-underline-offset:3px}
+.dots{display:inline-flex;gap:5px;padding:6px 0}
+.dots span{width:7px;height:7px;border-radius:50%;background:#C9A96B;animation:blink 1.2s infinite}
+.dots span:nth-child(2){animation-delay:.2s}
+.dots span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
 </style>
 </head>
 
 <body class="antialiased selection:bg-brass selection:text-espresso">
 
-<!-- drawn artwork used wherever a photograph has not been supplied -->
+<!-- shared artwork: gradients, patterns and the Virasat flower -->
 <svg width="0" height="0" class="absolute" aria-hidden="true"><defs>
   <linearGradient id="gBrass" x1="0" y1="0" x2="1" y2="1">
     <stop offset="0" stop-color="#8A7448"/><stop offset=".32" stop-color="#EBD6A4"/>
@@ -82,15 +100,33 @@ input::placeholder{color:#9C8C74;font-style:italic}
     <rect width="34" height="34" fill="#6E2634"/>
     <path d="M17 4 L28 17 L17 30 L6 17 Z" fill="none" stroke="url(#gBrass)" stroke-width="1.6" opacity=".8"/>
     <circle cx="17" cy="17" r="2.4" fill="#C9A96B" opacity=".7"/></pattern>
+
+  <symbol id="vFlower" viewBox="-92 -92 184 184">
+    <g fill="none" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round">
+      <path d="M0 -26 C18 -44 18 -68 0 -88 C-18 -68 -18 -44 0 -26Z"/>
+      <path d="M0 -26 C18 -44 18 -68 0 -88 C-18 -68 -18 -44 0 -26Z" transform="rotate(45)"/>
+      <path d="M0 -26 C18 -44 18 -68 0 -88 C-18 -68 -18 -44 0 -26Z" transform="rotate(90)"/>
+      <path d="M0 -26 C18 -44 18 -68 0 -88 C-18 -68 -18 -44 0 -26Z" transform="rotate(135)"/>
+      <path d="M0 -26 C18 -44 18 -68 0 -88 C-18 -68 -18 -44 0 -26Z" transform="rotate(180)"/>
+      <path d="M0 -26 C18 -44 18 -68 0 -88 C-18 -68 -18 -44 0 -26Z" transform="rotate(225)"/>
+      <path d="M0 -26 C18 -44 18 -68 0 -88 C-18 -68 -18 -44 0 -26Z" transform="rotate(270)"/>
+      <path d="M0 -26 C18 -44 18 -68 0 -88 C-18 -68 -18 -44 0 -26Z" transform="rotate(315)"/>
+      <circle r="36" stroke-width="3.5" stroke-dasharray="7 8"/>
+      <circle r="8" stroke-width="3"/>
+      <path stroke-width="2.5" stroke-linecap="round" d="M0 -11L0 -16M7.8 -7.8L11.3 -11.3M11 0L16 0M7.8 7.8L11.3 11.3M0 11L0 16M-7.8 7.8L-11.3 11.3M-11 0L-16 0M-7.8 -7.8L-11.3 -11.3"/>
+    </g>
+    <circle r="2.8" fill="currentColor"/>
+  </symbol>
 </defs></svg>
 
 <!-- ═══════════════ NAV ═══════════════ -->
 <header class="absolute inset-x-0 top-0 z-30">
-  <div class="mx-auto flex w-[92%] max-w-6xl items-center justify-between gap-6 py-6">
-    <a href="#top" class="track text-xl font-light sm:text-2xl">VIRASAT</a>
+  <div class="mx-auto flex w-[92%] max-w-6xl items-center justify-between gap-6 py-5">
+    <a href="#top" aria-label="Virasat home"><span class="logo-slot h-14 sm:h-16"></span></a>
     <nav class="flex items-center gap-5 text-[15px] italic text-ivory2 sm:gap-7">
       <a href="#story" class="hidden transition hover:text-ivory sm:inline">Our Story</a>
       <a href="#how" class="hidden transition hover:text-ivory sm:inline">How It Works</a>
+      <a href="#sustainability" class="hidden transition hover:text-ivory md:inline">Sustainability</a>
       <a href="#contact" class="rounded-full border border-ivory2/50 px-5 py-2 not-italic transition hover:border-ivory hover:bg-ivory/10">Contact Us</a>
     </nav>
   </div>
@@ -98,23 +134,19 @@ input::placeholder{color:#9C8C74;font-style:italic}
 
 <!-- ═══════════════ HERO ═══════════════ -->
 <section id="top" class="photo min-h-[86vh]" style="--ph:var(--photo-hero)">
-  <!-- drawn stall: bangle stacks, jhumkas, candle -->
   <svg viewBox="0 0 1200 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <rect width="1200" height="760" fill="#1B120D"/>
     <ellipse cx="820" cy="60" rx="520" ry="330" fill="url(#lamp)"/>
     <ellipse cx="330" cy="150" rx="180" ry="180" fill="url(#lamp)" opacity=".5"/>
-    <!-- candle, left -->
     <g transform="translate(300,120)">
       <ellipse cx="0" cy="10" rx="46" ry="46" fill="url(#lamp)"/>
       <path d="M-3 4 q3 -16 3 -22 q0 6 3 22 z" fill="#F5E3B8"/>
       <rect x="-9" y="10" width="18" height="86" fill="#E8DBC0" opacity=".85"/>
     </g>
-    <!-- rack frame, right -->
     <g stroke="url(#gSteel)" stroke-width="9" fill="none">
       <path d="M700 40 V720"/><path d="M1170 40 V720"/>
       <path d="M690 210 H1180"/><path d="M690 400 H1180"/><path d="M690 590 H1180"/>
     </g>
-    <!-- stacked bangles on three shelves -->
     <g>
       <g stroke="url(#gWine)" stroke-width="7" fill="none">
         <ellipse cx="830" cy="140" rx="72" ry="58"/><ellipse cx="848" cy="140" rx="72" ry="58"/><ellipse cx="866" cy="140" rx="72" ry="58"/></g>
@@ -132,7 +164,6 @@ input::placeholder{color:#9C8C74;font-style:italic}
         <circle cx="790" cy="112" r="3"/><circle cx="972" cy="118" r="3"/><circle cx="794" cy="300" r="3"/>
         <circle cx="978" cy="304" r="3"/><circle cx="796" cy="488" r="3"/><circle cx="980" cy="492" r="3"/></g>
     </g>
-    <!-- hanging jhumkas, centre -->
     <g transform="translate(500,70)">
       <g stroke="url(#gBrass)" stroke-width="3" fill="none">
         <path d="M40 0 V54"/><path d="M120 0 V38"/><path d="M76 120 V158"/></g>
@@ -146,7 +177,6 @@ input::placeholder{color:#9C8C74;font-style:italic}
       <g stroke="url(#gBrass)" stroke-width="2.5" fill="none">
         <circle cx="40" cy="30" r="22"/><circle cx="120" cy="20" r="18"/></g>
     </g>
-    <!-- draped cloth along the base -->
     <path d="M0 640 Q300 600 620 648 T1200 636 V760 H0 Z" fill="url(#silk)" opacity=".9"/>
     <path d="M0 640 Q300 600 620 648 T1200 636" fill="none" stroke="url(#gBrass)" stroke-width="3" opacity=".7"/>
   </svg>
@@ -156,11 +186,11 @@ input::placeholder{color:#9C8C74;font-style:italic}
     linear-gradient(180deg, rgba(15,10,7,.55) 0%, transparent 22%, transparent 72%, rgba(15,10,7,.6) 100%)"></div>
   <div class="grain"></div>
 
-  <div class="content mx-auto flex min-h-[86vh] w-[92%] max-w-6xl items-center pt-24 pb-16">
+  <div class="content mx-auto flex min-h-[86vh] w-[92%] max-w-6xl items-center pt-28 pb-16">
     <div class="max-w-xl">
-      <p class="track-sm mb-5 text-[11.5px] uppercase text-brass/90">A new chapter for Indian heritage</p>
-      <h1 class="track text-5xl font-light leading-none sm:text-7xl lg:text-[5.6rem]">VIRASAT</h1>
-      <p class="mt-4 text-3xl font-light italic text-ivory sm:text-[2.6rem]">Nothing is Ordinary Twice.</p>
+      <p class="track-sm mb-6 text-[11.5px] uppercase text-brass/90">A new chapter for Indian heritage</p>
+      <h1><span class="sr-only">Virasat</span><span class="logo-slot h-36 sm:h-48 lg:h-56" aria-hidden="true"></span></h1>
+      <p class="mt-6 text-3xl font-light italic text-ivory sm:text-[2.6rem]">Nothing is Ordinary Twice.</p>
       <p class="mt-7 max-w-md text-lg font-light leading-relaxed text-ivory2 sm:text-xl">
         The sari you could never throw away deserves more than a place in the cupboard. Virasat
         transforms treasured garments into contemporary pieces, while putting traditional artisans
@@ -176,23 +206,18 @@ input::placeholder{color:#9C8C74;font-style:italic}
 <!-- ═══════════════ OUR STORY ═══════════════ -->
 <section id="story" class="grid scroll-mt-4 lg:grid-cols-2">
   <div class="photo min-h-[340px] lg:min-h-[560px]" style="--ph:var(--photo-story)">
-    <!-- drawn trunk with a folded sari, a sketch and a rose -->
     <svg viewBox="0 0 700 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <rect width="700" height="620" fill="#191009"/>
       <ellipse cx="300" cy="30" rx="460" ry="300" fill="url(#lamp)" opacity=".7"/>
-      <!-- open lid -->
       <path d="M92 250 L150 96 L600 96 L560 250 Z" fill="#3A2A1E"/>
       <path d="M92 250 L150 96 L600 96 L560 250 Z" fill="none" stroke="url(#gBrass)" stroke-width="3"/>
       <g stroke="url(#gBrass)" stroke-width="1.6" fill="none" opacity=".55">
         <path d="M160 118 h420"/><path d="M136 156 h420"/><path d="M118 200 h420"/></g>
-      <!-- trunk body -->
       <rect x="80" y="250" width="500" height="300" fill="#2E2016"/>
       <rect x="80" y="250" width="500" height="300" fill="none" stroke="url(#gBrass)" stroke-width="3"/>
-      <!-- folded silk inside -->
       <path d="M104 274 h452 v250 h-452 z" fill="url(#silk)"/>
       <g stroke="url(#gBrass)" stroke-width="2.4" fill="none" opacity=".85">
         <path d="M104 320 h452"/><path d="M104 372 h452"/><path d="M104 424 h452"/><path d="M104 476 h452"/></g>
-      <!-- sketch card -->
       <g transform="rotate(-7 300 400)">
         <rect x="196" y="298" width="180" height="240" fill="#E5D9C0"/>
         <rect x="196" y="298" width="180" height="240" fill="none" stroke="#8A7448" stroke-width="1.6"/>
@@ -201,11 +226,9 @@ input::placeholder{color:#9C8C74;font-style:italic}
           <path d="M286 372 L258 396"/><path d="M286 372 L314 396"/>
           <path d="M262 400 Q286 392 310 400 L326 500 Q286 512 246 500 Z"/></g>
       </g>
-      <!-- rose -->
       <g transform="translate(432,404)">
         <circle r="42" fill="#F0DCD2"/><circle r="30" fill="#E8CFC4"/><circle r="18" fill="#DEBCAE"/>
         <circle r="7" fill="#C9A96B"/></g>
-      <!-- brass clasp -->
       <rect x="300" y="238" width="60" height="26" fill="url(#gBrass)"/>
     </svg>
     <div class="scrim" style="background:linear-gradient(90deg, rgba(20,13,9,.30), rgba(20,13,9,.05) 40%, rgba(36,26,20,.55) 100%)"></div>
@@ -237,21 +260,107 @@ input::placeholder{color:#9C8C74;font-style:italic}
 
     <div class="mt-10 grid gap-y-10 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-4 lg:gap-x-12" id="steps"></div>
 
-    <div class="mt-14 grid gap-y-8 border-t border-ivory2/25 pt-9 sm:grid-cols-3 sm:gap-x-10">
-      <div class="sm:border-r sm:border-ivory2/25 sm:pr-10">
+    <div class="mt-14 grid gap-y-8 border-t border-ivory2/25 pt-9 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-4">
+      <div>
         <p class="text-2xl font-light">The Tote</p>
-        <p class="mt-1 text-4xl font-light">₹4,200</p>
+        <p class="mt-1 text-3xl font-light">₹2,800 to 4,200</p>
       </div>
-      <div class="sm:border-r sm:border-ivory2/25 sm:pr-10">
-        <p class="text-2xl font-light">Set of Four</p>
-        <p class="mt-1 text-4xl font-light">₹7,500</p>
+      <div>
+        <p class="text-2xl font-light">Pouch</p>
+        <p class="mt-1 text-3xl font-light">₹1,200</p>
       </div>
-      <div class="flex items-center">
-        <p class="text-xl font-light italic leading-relaxed text-ivory2">
-          About 38% of what you pay goes straight to the artisan.
-        </p>
+      <div>
+        <p class="text-2xl font-light">Cushion Cover</p>
+        <p class="mt-1 text-3xl font-light">₹2,000</p>
+      </div>
+      <div>
+        <p class="text-2xl font-light">Memory Set</p>
+        <p class="mt-1 text-3xl font-light">₹6,500</p>
       </div>
     </div>
+    <p class="mt-9 text-xl font-light italic leading-relaxed text-ivory2">
+      About 38% of what you pay goes straight to the artisan.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════ SUSTAINABILITY ═══════════════ -->
+<section id="sustainability" class="scroll-mt-4 bg-espresso">
+  <div class="mx-auto w-[92%] max-w-6xl py-16 lg:py-24">
+    <p class="track-sm text-[11.5px] uppercase text-brass/90">Sustainability</p>
+    <h2 class="mt-3 max-w-3xl text-4xl font-light italic leading-tight sm:text-5xl">
+      The most sustainable fabric is the one already in your almirah.
+    </h2>
+    <p class="mt-6 max-w-2xl text-lg font-light leading-relaxed text-ivory2">
+      Every Virasat piece begins with a garment that already exists. No new cloth is woven for the
+      main body, nothing is shredded or re-spun, and the hands that remake it are paid fairly. That
+      is how we work towards two of the UN Sustainable Development Goals.
+    </p>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2">
+      <div class="border border-brass/30 bg-umber/60 p-8">
+        <p class="text-5xl font-light text-brass sm:text-6xl">70.7 lakh tonnes</p>
+        <p class="mt-3 text-lg font-light text-ivory2">of textile waste is generated in India every year.</p>
+      </div>
+      <div class="border border-brass/30 bg-umber/60 p-8">
+        <p class="text-5xl font-light text-[#D9849A] sm:text-6xl">~45%</p>
+        <p class="mt-3 text-lg font-light text-ivory2">of the clothes and fabric people throw away is still not saved from landfill or burning.</p>
+      </div>
+    </div>
+
+    <div class="mt-12 grid gap-8 lg:grid-cols-2">
+      <article class="flex flex-col overflow-hidden border border-ivory2/20 bg-umber">
+        <div class="flex items-center gap-5 bg-sdg12 px-8 py-6">
+          <span class="font-sans text-6xl font-light leading-none text-white">12</span>
+          <div>
+            <p class="track-sm text-[11px] uppercase text-white/85">UN Sustainable Development Goal</p>
+            <h3 class="text-2xl leading-tight text-white">Responsible Consumption and Production</h3>
+          </div>
+        </div>
+        <div class="flex-1 px-8 py-7">
+          <p class="text-[15px] italic text-muted">Target 12.5: by 2030, substantially reduce waste generation through prevention, reduction, recycling and reuse.</p>
+          <ul class="mt-5 space-y-3 text-lg font-light text-ivory2">
+            <li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 rotate-45 bg-brass"></span><span>Garments that would sit unused for years, or be given away, go back into daily use.</span></li>
+            <li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 rotate-45 bg-brass"></span><span>Zero new fabric for the main body of every piece.</span></li>
+            <li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 rotate-45 bg-brass"></span><span>Reuse, not recycling: the fabric is never shredded, melted or re-spun.</span></li>
+            <li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 rotate-45 bg-brass"></span><span>Every offcut goes back to its owner.</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="flex flex-col overflow-hidden border border-ivory2/20 bg-umber">
+        <div class="flex items-center gap-5 bg-sdg8 px-8 py-6">
+          <span class="font-sans text-6xl font-light leading-none text-white">8</span>
+          <div>
+            <p class="track-sm text-[11px] uppercase text-white/85">UN Sustainable Development Goal</p>
+            <h3 class="text-2xl leading-tight text-white">Decent Work and Economic Growth</h3>
+          </div>
+        </div>
+        <div class="flex-1 px-8 py-7">
+          <p class="text-[15px] italic text-muted">Fair pay and steady work for the artisans who keep India's crafts alive.</p>
+          <ul class="mt-5 space-y-3 text-lg font-light text-ivory2">
+            <li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 rotate-45 bg-brass"></span><span>38% of every price goes to the artisan, where a middleman chain can leave them as little as 25%.</span></li>
+            <li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 rotate-45 bg-brass"></span><span>About ₹7.7 lakh earned by artisans in our first year.</span></li>
+            <li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 rotate-45 bg-brass"></span><span>20 artisans with steady work in phulkari, chikankari and gota patti.</span></li>
+            <li class="flex gap-3"><span class="mt-2.5 h-2 w-2 shrink-0 rotate-45 bg-brass"></span><span>Every piece carries a card with the name and story of the artisan who made it.</span></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="mt-14 border-t border-ivory2/20 pt-10">
+      <h3 class="text-2xl font-light italic sm:text-3xl">Our year one targets</h3>
+      <div class="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div><p class="text-4xl font-light text-brass">368</p><p class="mt-1 text-lg font-light text-ivory2">garments back in use</p></div>
+        <div><p class="text-4xl font-light text-brass">Zero</p><p class="mt-1 text-lg font-light text-ivory2">new fabric for the main body</p></div>
+        <div><p class="text-4xl font-light text-brass">100%</p><p class="mt-1 text-lg font-light text-ivory2">of offcuts returned to their owners</p></div>
+        <div><p class="text-4xl font-light text-brass">₹7.7 lakh</p><p class="mt-1 text-lg font-light text-ivory2">to 20 artisans</p></div>
+      </div>
+    </div>
+
+    <p class="mt-10 text-[14px] italic text-muted">
+      Source: Ministry of Textiles, Mapping of Textile Waste Value Chain in India (March 2026). Year one figures are Virasat's targets.
+    </p>
   </div>
 </section>
 
@@ -297,7 +406,7 @@ input::placeholder{color:#9C8C74;font-style:italic}
       <p class="mt-3 text-lg font-light italic leading-relaxed text-ivory2">
         Have a garment with a story?<br>We'd love to hear it.
       </p>
-      <a href="mailto:hello@virasat.in?subject=I%20have%20a%20garment%20with%20a%20story"
+      <a href="mailto:naishagarg27@gmail.com?subject=I%20have%20a%20garment%20with%20a%20story"
          class="mt-6 inline-block rounded-full border border-ivory2/50 px-8 py-3 text-lg font-light transition hover:border-ivory hover:bg-ivory/10">
         Contact Us
       </a>
@@ -306,7 +415,7 @@ input::placeholder{color:#9C8C74;font-style:italic}
           <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.4">
             <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
         </a>
-        <a href="mailto:hello@virasat.in" aria-label="Email" class="grid h-11 w-11 place-items-center border border-ivory2/35 transition hover:border-ivory">
+        <a href="mailto:naishagarg27@gmail.com" aria-label="Email" class="grid h-11 w-11 place-items-center border border-ivory2/35 transition hover:border-ivory">
           <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.4">
             <rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
         </a>
@@ -316,13 +425,70 @@ input::placeholder{color:#9C8C74;font-style:italic}
 </section>
 
 <footer class="bg-espresso">
-  <div class="mx-auto flex w-[92%] max-w-6xl flex-wrap items-center justify-between gap-3 py-7 text-[15px] font-light text-muted">
-    <p><span class="track">VIRASAT</span> &nbsp;·&nbsp; <span class="italic">Nothing is Ordinary Twice.</span></p>
-    <p class="italic">Founded by Naisha Garg · Launching soon</p>
+  <div class="mx-auto flex w-[92%] max-w-6xl flex-wrap items-center justify-between gap-4 py-7 text-[15px] font-light text-muted">
+    <span class="logo-slot h-12" role="img" aria-label="Virasat"></span>
+    <p class="italic">Nothing is Ordinary Twice. &nbsp;·&nbsp; Founded by Naisha Garg &nbsp;·&nbsp; Launching soon</p>
   </div>
 </footer>
 
+<!-- ═══════════════ SAKHI: THE VIRASAT HELPER ═══════════════ -->
+<div class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+  <section id="sakhiPanel" role="dialog" aria-label="Ask Sakhi, the Virasat helper"
+    class="hidden w-[min(370px,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-2xl border border-brass/40 bg-umber shadow-2xl shadow-black/60"
+    style="max-height:min(580px,75vh)">
+    <header class="flex items-center gap-3 border-b border-brass/25 bg-espresso px-5 py-4">
+      <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-brass/50 text-[#EFDDB2]">
+        <svg class="h-8 w-8" aria-hidden="true"><use href="#vFlower"/></svg>
+      </span>
+      <div class="flex-1">
+        <p class="text-xl leading-tight">Ask Sakhi</p>
+        <p class="flex items-center gap-1.5 text-[13.5px] italic text-ivory2">
+          <span class="h-2 w-2 rounded-full bg-emerald-400"></span>Your Virasat helper, here 24/7
+        </p>
+      </div>
+      <button id="sakhiClose" aria-label="Close chat" class="grid h-9 w-9 place-items-center rounded-full text-2xl text-ivory2 transition hover:bg-ivory/10 hover:text-ivory">&times;</button>
+    </header>
+    <div id="sakhiLog" class="flex flex-1 flex-col gap-3 overflow-y-auto px-4 py-4" aria-live="polite"></div>
+    <div id="sakhiChips" class="flex flex-wrap gap-2 px-4 pb-3"></div>
+    <form id="sakhiForm" class="flex gap-2 border-t border-brass/25 bg-espresso/70 p-3">
+      <label for="sakhiInput" class="sr-only">Type your question</label>
+      <input id="sakhiInput" autocomplete="off" placeholder="Ask about your sari..."
+        class="min-w-0 flex-1 rounded-full border border-ivory2/30 bg-black/25 px-4 py-2.5 text-[17px] text-ivory focus:border-brass focus:outline-none">
+      <button type="submit" aria-label="Send" class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brass text-espresso transition hover:bg-ivory">
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </form>
+  </section>
+
+  <button id="sakhiToggle" aria-expanded="false" aria-controls="sakhiPanel"
+    class="flex items-center gap-2.5 rounded-full border border-brass/60 bg-espresso/95 py-2.5 pl-3 pr-5 text-[#EFDDB2] shadow-xl shadow-black/50 transition hover:border-brass">
+    <svg class="h-8 w-8" aria-hidden="true"><use href="#vFlower"/></svg>
+    <span class="text-lg italic text-ivory">Ask Sakhi</span>
+  </button>
+</div>
+
 <script>
+/* ── LOGO ──────────────────────────────────────────────
+   Upload your logo from the PPT as images/virasat-logo.png
+   and it replaces the drawn version everywhere. */
+const LOGO_FILE = 'images/virasat-logo.png';
+const LOGO_SVG = `
+<svg viewBox="0 0 600 330" aria-hidden="true" style="color:#EFDDB2">
+  <use href="#vFlower" x="58" y="0" width="184" height="184"/>
+  <g fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150 180 C160 198 138 210 144 228 C148 240 160 244 160 258 V322"/>
+    <path d="M144 228 C130 238 124 222 138 214"/>
+    <path d="M160 270 C130 254 102 264 102 292 C102 318 132 328 160 314"/>
+  </g>
+  <text x="192" y="322" font-family="'Josefin Sans',sans-serif" font-weight="100" font-size="86" letter-spacing="12" fill="currentColor">IRASAT</text>
+</svg>`;
+const slots = document.querySelectorAll('.logo-slot');
+slots.forEach(s => s.innerHTML = LOGO_SVG);
+const probe = new Image();
+probe.onload = () => slots.forEach(s => s.innerHTML = `<img src="${LOGO_FILE}" alt="">`);
+probe.src = LOGO_FILE;
+
+/* ── HOW IT WORKS ─────────────────────────────────────── */
 const STEPS = [
   ['01','Send it to us','Send your treasured sari, dupatta or other traditional garment to Virasat. We\'ll take care of it from there.'],
   ['02','See your mockups','We show you exactly how your own fabric could become a contemporary piece before anything is cut.'],
@@ -336,6 +502,7 @@ document.getElementById('steps').innerHTML = STEPS.map(([n,t,d]) => `
     <p class="mt-3 text-[17px] font-light leading-relaxed text-ivory2">${d}</p>
   </div>`).join('');
 
+/* ── WAITLIST ─────────────────────────────────────────── */
 const form = document.getElementById('subscribeForm');
 const input = document.getElementById('email');
 const msg = document.getElementById('formMsg');
@@ -358,6 +525,112 @@ form.addEventListener('submit', e => {
       </p>
     </div>`;
 });
+
+/* ── SAKHI ────────────────────────────────────────────── */
+const EMAIL = 'naishagarg27@gmail.com';
+const KB = [
+  {k:['namaste','hello','hi','hey','hii','hiii','good morning','good evening','sat sri akal','your name','who are you'],
+   a:`Namaste! I'm Sakhi. Ask me how Virasat works, what your garment can become, prices, or how we look after your fabric.`},
+  {k:['how does','how it work','how do','process','step','kaise','work'],
+   a:`It's four simple steps:<br><b>1.</b> Send us your sari, dupatta or kurta, insured and tracked. We photograph it on arrival.<br><b>2.</b> We show you three or four design mockups made from your own fabric.<br><b>3.</b> Nothing is cut until you approve.<br><b>4.</b> A traditional artisan makes your piece, and it comes home with every offcut and a card naming the artisan who made it.`},
+  {k:['safe','damage','insur','ruin','lose','lost','track','careful','trust','cut'],
+   a:`Your garment is precious, and we treat it that way. It travels insured and tracked, we photograph it the moment it arrives, and <b>nothing is cut until you say yes</b>. Cutting is permanent, so that decision is always yours.`},
+  {k:['artisan','karigar','craftsman','craftsmen','fair','38','who make','who gets','earn'],
+   a:`<b>38% of every price goes to the artisan</b> who makes your piece. In a long middleman chain, an artisan can get as little as a quarter of the price. We think the hands that make it deserve better.`},
+  {k:['card','credit','name','story','recogni'],
+   a:`Every Virasat piece comes home with a card carrying the <b>name and story of the artisan</b> who made it. Big fashion houses have borrowed Indian crafts without credit. We print the credit in the box.`},
+  {k:['price','cost','how much','kitna','rate','charge','₹','rs','rupee','expensive','memory set'],
+   a:`<b>Tote:</b> ₹2,800 to ₹4,200<br><b>Pouch:</b> ₹1,200<br><b>Cushion cover:</b> ₹2,000<br><b>Memory Set:</b> ₹6,500<br>You pay 50% after you approve your design, and the rest before dispatch.`},
+  {k:['payment','advance','pay','upi','installment','emi'],
+   a:`You pay 50% as an advance after you approve your design, and the remaining 50% before your piece is dispatched.`},
+  {k:['tote','bag','pouch','cushion','become','make','product','options','what can'],
+   a:`Your garment can become a <b>structured tote</b>, lined and strong enough for a laptop; <b>pouches and holders</b> from the border and narrow strips; or <b>cushion covers</b> when the fabric is too delicate for a bag. There's also our <b>Memory Set</b>, with more ideas on the way.`},
+  {k:['old','fragile','delicate','torn','purani','purana','weak','tear'],
+   a:`Older or delicate fabric is often best as a <b>cushion cover</b>, our gentlest option. When your garment arrives, we check its condition before suggesting designs that suit it.`},
+  {k:['offcut','leftover','scrap','extra fabric','remaining fabric'],
+   a:`Every offcut comes back to you. Nothing from your garment is kept or thrown away.`},
+  {k:['sustainab','environment','eco','planet','waste','sdg','green','climate','recycl'],
+   a:`Virasat works towards two UN Sustainable Development Goals:<br><b>SDG 12</b>, Responsible Consumption and Production: garments go back into use, with zero new fabric for the main body.<br><b>SDG 8</b>, Decent Work and Economic Growth: 38% of every price goes to the artisan.<br>See our <a href="#sustainability">Sustainability</a> section for more.`},
+  {k:['phulkari','chikan','gota','embroider','craft','zari'],
+   a:`We work with traditional crafts like <b>phulkari, chikankari and gota patti</b>, with a second craft planned as we grow.`},
+  {k:['sari','saree','dupatta','kurta','lehenga','what can i send','which garment','send'],
+   a:`Saris, dupattas and kurtas, especially the ones you'll never wear again but could never throw away. Have something else? <a href="mailto:${EMAIL}">Write to us</a> and tell us its story.`},
+  {k:['where','city','cities','deliver','ship','nri','abroad','location','punjab','delhi','chandigarh'],
+   a:`We're launching in <b>Punjab, Chandigarh and Delhi NCR</b>, and plan to add shipping for NRI families as we grow.`},
+  {k:['how long','time','days','weeks','when will i','turnaround'],
+   a:`We'll share timelines when we open orders. <a href="#signup">Join the waitlist</a> and you'll be the first to know.`},
+  {k:['launch','waitlist','wait list','when','order','book','start'],
+   a:`Virasat is launching soon. <a href="#signup">Join the waitlist</a> and we'll write to you before we take our first orders.`},
+  {k:['contact','email','human','person','talk','call','phone','reach'],
+   a:`You can reach a real person at <a href="mailto:${EMAIL}">${EMAIL}</a>. We'd love to hear your garment's story.`},
+  {k:['thank','shukriya','dhanyavaad','great','cool','nice'],
+   a:`Anytime. Now go and find that sari.`},
+];
+const FALLBACK = `I'm not sure about that one yet. Write to <a href="mailto:${EMAIL}">${EMAIL}</a> and a real person from Virasat will reply.`;
+const CHIPS = ['How does it work?','Prices','Is my sari safe?','Who gets paid?','Sustainability'];
+
+const panel = document.getElementById('sakhiPanel');
+const toggle = document.getElementById('sakhiToggle');
+const log = document.getElementById('sakhiLog');
+const chatForm = document.getElementById('sakhiForm');
+const chatInput = document.getElementById('sakhiInput');
+let greeted = false;
+
+const escHTML = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const escRe = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const hit = (t, key) => new RegExp('(^|[^a-z0-9])' + escRe(key) + (key.length <= 3 ? '(?![a-z])' : ''), 'i').test(t);
+
+function reply(q){
+  const t = q.toLowerCase();
+  let best = null, score = 0;
+  for (const e of KB){
+    const s = e.k.filter(k => hit(t, k)).length;
+    if (s > score){ score = s; best = e; }
+  }
+  return best ? best.a : FALLBACK;
+}
+
+function bubble(html, mine){
+  const d = document.createElement('div');
+  d.className = mine
+    ? 'self-end max-w-[85%] rounded-2xl rounded-br-sm bg-brass px-4 py-2.5 text-[16.5px] leading-snug text-espresso'
+    : 'max-w-[88%] rounded-2xl rounded-bl-sm border border-brass/20 bg-espresso/80 px-4 py-3 text-[16.5px] leading-relaxed text-ivory2';
+  d.innerHTML = html;
+  log.appendChild(d);
+  log.scrollTop = log.scrollHeight;
+  return d;
+}
+
+function ask(q){
+  q = q.trim();
+  if (!q) return;
+  bubble(escHTML(q), true);
+  const typing = bubble('<span class="dots"><span></span><span></span><span></span></span>', false);
+  setTimeout(() => { typing.innerHTML = reply(q); log.scrollTop = log.scrollHeight; }, 650);
+}
+
+document.getElementById('sakhiChips').innerHTML = CHIPS.map(c =>
+  `<button type="button" class="rounded-full border border-brass/40 px-3.5 py-1.5 text-[15px] italic text-ivory2 transition hover:border-brass hover:text-ivory">${c}</button>`
+).join('');
+document.querySelectorAll('#sakhiChips button').forEach(b => b.addEventListener('click', () => ask(b.textContent)));
+
+function setOpen(open){
+  panel.classList.toggle('hidden', !open);
+  panel.classList.toggle('flex', open);
+  toggle.setAttribute('aria-expanded', open);
+  if (open){
+    if (!greeted){
+      bubble(`Namaste! I'm <b>Sakhi</b>, your Virasat helper. Ask me anything about turning your treasured garment into something you'll carry again.`, false);
+      greeted = true;
+    }
+    chatInput.focus();
+  }
+}
+toggle.addEventListener('click', () => setOpen(panel.classList.contains('hidden')));
+document.getElementById('sakhiClose').addEventListener('click', () => setOpen(false));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+chatForm.addEventListener('submit', e => { e.preventDefault(); ask(chatInput.value); chatInput.value = ''; });
 </script>
 </body>
+</html>
 </html>
